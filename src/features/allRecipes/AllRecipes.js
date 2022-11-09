@@ -3,7 +3,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { addRecipe } from "../favoriteRecipes/favoriteRecipesSlice.js";
-import { loadData, selectFilteredAllRecipes } from "./allRecipesSlice.js";
+import {
+  loadData,
+  selectFilteredAllRecipes,
+  removeRecipeFromAll,
+  addRecipeToAll,
+} from "./allRecipesSlice.js";
 import FavoriteButton from "../../components/FavoriteButton";
 import Recipe from "../../components/Recipe";
 const favoriteIconURL =
@@ -21,6 +26,7 @@ export const AllRecipes = () => {
 
   const onAddRecipeHandler = (recipe) => {
     dispatch(addRecipe(recipe));
+    dispatch(removeRecipeFromAll(recipe));
   };
 
   return (

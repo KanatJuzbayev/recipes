@@ -7,6 +7,11 @@ body,
   height: 100%;
   margin: 15px;
   font-family: "Oxygen", sans-serif;
+  color: #e6e5e5;
+}
+
+body {
+  background-color: #395ca3;
 }
 
 #app {
@@ -77,6 +82,7 @@ body,
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  background-color: #004581;
 }
 
 .recipe:hover,

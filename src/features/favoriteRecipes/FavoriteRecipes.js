@@ -5,8 +5,12 @@ import {
   removeRecipe,
   selectFilteredFavoriteRecipes,
 } from "./favoriteRecipesSlice.js";
+
+import { addRecipeToAll } from "../allRecipes/allRecipesSlice";
+
 import FavoriteButton from "../../components/FavoriteButton";
 import Recipe from "../../components/Recipe";
+
 const unfavoriteIconUrl =
   "https://static-assets.codecademy.com/Courses/Learn-Redux/Recipes-App/icons/unfavorite.svg";
 
@@ -17,6 +21,7 @@ export const FavoriteRecipes = () => {
   const onRemoveRecipeHandler = (recipe) => {
     // Dispatch the action below.
     dispatch(removeRecipe(recipe));
+    dispatch(addRecipeToAll(recipe));
   };
 
   return (

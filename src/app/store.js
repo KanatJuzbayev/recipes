@@ -1,12 +1,13 @@
-import { createStore, combineReducers } from "redux";
-import { favoriteRecipesReducer } from "../features/favoriteRecipes/favoriteRecipesSlice.js";
-import { searchTermReducer } from "../features/searchTerm/searchTermSlice.js";
-import { allRecipesReducer } from "../features/allRecipes/allRecipesSlice.js";
+import { favoriteRecipesSlice } from "../features/favoriteRecipes/favoriteRecipesSlice.js";
+import { searchTermSlice } from "../features/searchTerm/searchTermSlice.js";
+import { allRecipesSlice } from "../features/allRecipes/allRecipesSlice.js";
 
-export const store = createStore(
-  combineReducers({
-    favoriteRecipes: favoriteRecipesReducer,
-    searchTerm: searchTermReducer,
-    allRecipes: allRecipesReducer,
-  })
-);
+import { configureStore } from "@reduxjs/toolkit";
+
+export const store = configureStore({
+  reducer: {
+    favoriteRecipes: favoriteRecipesSlice.reducer,
+    searchTerm: searchTermSlice.reducer,
+    allRecipes: allRecipesSlice.reducer,
+  },
+});

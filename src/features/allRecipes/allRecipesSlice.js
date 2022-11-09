@@ -1,26 +1,22 @@
 import allRecipesData from "../../data.js";
 import { selectSearchTerm } from "../searchTerm/searchTermSlice.js";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const loadData = () => {
-  return {
-    type: "allRecipes/loadData",
-    payload: allRecipesData,
-  };
-};
-
-const initialState = [];
-export const allRecipesReducer = (allRecipes = initialState, action) => {
-  switch (action.type) {
-    case "allRecipes/loadData":
-      return action.payload;
-    case "favoriteRecipes/addRecipe":
-      return allRecipes.filter((recipe) => recipe.id !== action.payload.id);
-    case "favoriteRecipes/removeRecipe":
-      return [...allRecipes, action.payload];
-    default:
-      return allRecipes;
-  }
-};
+export const allRecipesSlice = createSlice({
+  name: "allRecipes",
+  initialState: [],
+  reducers: {
+    loadData: (state, action) => {
+      return allRecipesData;
+    },
+    removeRecipeFromAll: (state, action) => {
+      return state.filter((recipe) => recipe.id !== action.payload.id);
+    },
+    addRecipeToAll: (state, action) => {
+      return [...state, action.payload];
+    },
+  },
+});
 
 export const selectAllRecipes = (state) => state.allRecipes;
 
@@ -32,3 +28,9 @@ export const selectFilteredAllRecipes = (state) => {
     recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 };
+
+export const {
+  loadData,
+  removeRecipeFromAll,
+  addRecipeToAll,
+} = allRecipesSlice.actions;
